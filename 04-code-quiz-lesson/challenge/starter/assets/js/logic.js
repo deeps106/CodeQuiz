@@ -1,5 +1,6 @@
 //setting variables
 
+let choices = document.querySelector("#choices");
 let highScoresPage = href="highscores.html"
 let questions = document.querySelector("#questions")
 let scores = document.querySelector(".scores");
@@ -9,11 +10,13 @@ let time = 60
 timer.textContent = time + " " + "seconds";
 
 //create an ordered list in choices
-
-let choices = document.querySelector("#choices");
 let olEl = document.createElement("ol");
 //append ordered list to choices
 choices.appendChild(olEl)
+//append list of answers to ol
+
+
+
 
 
 //begin quiz by clicking start quiz button
