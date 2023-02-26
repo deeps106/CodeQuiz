@@ -1,4 +1,5 @@
-//setting variables
+
+//SETTING VARIABLES
 let body = document.body
 let choices = document.querySelector("#choices");
 let highScoresPage = href="highscores.html"
@@ -9,19 +10,18 @@ let timer = document.getElementById("time");
 let time = 120
 timer.textContent = time + " " + "seconds";
 
-//create an ordered list in choices
-let olEl = document.createElement("ol");
-//append ordered list to choices
-choices.appendChild(olEl)
-//append list of answers to ol
-let buttonTags = document.createElement("button")
-olEl.appendChild(buttonTags)
-
-//change body background colour to light blue
-
+//change background colour OF BODY to light blue
 body.setAttribute("style", "background-color: rgb(240, 248, 255)")
 
+//APPENDING OL AND BUTTON ELEMENTS TO HTML
+// let olEl = document.createElement("ol");
+// choices.appendChild(olEl)
 
+
+
+
+
+//CODE:
 
 //begin quiz by clicking start quiz button
 
@@ -35,6 +35,9 @@ startQuiz.addEventListener("click", function(){
     showQuestions();
     hideStartQuizButton();
 })
+
+
+//FUNCTIONS:
 
 //this function exposes the questions
 function showQuestions() {
@@ -50,7 +53,7 @@ function highScores() {
         highScoresPage
     })
 }
-
+//this function hides the start quiz button when clicked
 function hideStartQuizButton() {
     startQuiz.setAttribute("class", "hide");
 }
