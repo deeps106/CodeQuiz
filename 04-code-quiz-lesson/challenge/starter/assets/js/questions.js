@@ -1,96 +1,20 @@
-//creating buttons for
-let questionTitle = document.querySelector("#question-title")
-let buttonEl1 = document.createElement("button")
-let buttonEl2 = document.createElement("button")
-let buttonEl3 = document.createElement("button")
-let buttonEl4 = document.createElement("button")
-let pTag = document.createElement("p");
+const questionsArray = [
+    {question: "Question 1: element.setAttribute() is a function used for which purpose?",
+    answers: ["1. Creating new elements", "2. Setting the HTML", "3. Creating and setting selectors, styles, data-*", "4. Creating and setting pTags"],
+    correctAnswer: "2"
+},
+    {question: "Question 2: When is element.textContent used?", 
+    answers: ["1. Add text to an input element", "2. Add text to a newly created display element", "3. Add text style to an image", "4. Remove text from a list"],
+    correctAnswer: "1"
+},
 
-let buttons = [buttonEl1,buttonEl2, buttonEl3, buttonEl4]
+    {question: "Question 3: document.querySelector() selects which elements", 
+    answers: ["1. The first one", "2. All of them", "3. The 50th element in the periodic table", "4. Fire from 'air', 'water', 'fire' "],
+    correctAnswer: "0"
+},
 
-//APPENDING OL AND BUTTON ELEMENTS TO HTML
-let olEl = document.createElement("ol");
-choices.appendChild(olEl)
-
-olEl.appendChild(buttonEl1)
-olEl.appendChild(buttonEl2)
-olEl.appendChild(buttonEl3)
-olEl.appendChild(buttonEl4)
-
-//append p Tag to choices div
-choices.appendChild(pTag);
-
-questionsArray = [
-
-    {Question1: "What is the purpose of setAttribute()?", Answers: ["1. set up colours", "2. sets the tone of the website", "3. sets the elements into groups", "4. elements can attributed styles, classes, text"], correctAnswer: 4},
-    
-    {Question2: "What is the purpose of setAttribute()?", Answers: ["1. set up colours", "2. sets the tone of the website", "3. sets the elements into groups", "4. elements can attributed styles, classes, text"], correctAnswer: 2},
-    
-    {Question3: "What is the purpose of setAttribute()?", Answers: ["1. set up colours", "2. sets the tone of the website", "3. sets the elements into groups", "4. elements can attributed styles, classes, text"], correctAnswer: 1},
-    
-    {Question4: "What is the purpose of setAttribute()?", Answers: ["1. set up colours", "2. sets the tone of the website", "3. sets the elements into groups", "4. elements can attributed styles, classes, text"], correctAnswer: 3}
-    
-]
-
-
-
-//add a data-state class to buttons so that correct and wrong answers can be differentiated
-buttonEl1.setAttribute("data-state", "")
-buttonEl2.setAttribute("data-state", "")
-buttonEl3.setAttribute("data-state", "")
-buttonEl4.setAttribute("data-state", "")
-
-
-//first question
-let firstQuestionTitle = questionsArray[0].Question1;
-// let firstQuestionCorrectAnswer = questionsArray[0].Answer[3]
-
-//add content to questionTitle
-questionTitle.textContent = firstQuestionTitle
-// add content to answer buttons
-buttonEl1.textContent = questionsArray[0].Answers[0]
-buttonEl2.textContent = questionsArray[0].Answers[1]
-buttonEl3.textContent = questionsArray[0].Answers[2]
-buttonEl4.textContent = questionsArray[0].Answers[3]
-
-//correct answer for question 1
-
-
-let wrapperContainer = document.querySelector(".wrapper")
-//listen on wrapper container for clicks
-wrapperContainer.addEventListener("click", function(event){
-    let element = event.target
-    
-    const firstQuestionCorrectAns = questionsArray[0].Answers[3]
-//change the data-state of clicked button
-if (element.matches(firstQuestionCorrectAns)) {
-    let state = element.getAttribute("data-state");
-
-    if (state === "") {
-        element.setAttribute("data-state", "correct");
-        pTag.textContent = "correct answer";
-    } else {
-        element.setAttribute("data-state", "incorrect");
-        pTag.textContent = "wrong answer";
-    }
-};
-
-
-});
-
-
-// console.log(firstQuestionTitle);
-
-// function Answers() {
-// for (let i = 0; i < buttons.length; i++) {
-//     buttons[i].textContent = questionsArray[i].Answers[i];
-    
-// }
-
-// }
-// Answers()
-
-// for (let i = 0; i < questionsArray.length; i++) {
-//     answer = questionsArray[i].Answers[i];
-// console.log(answer)
-// }
+    {question: "Question 4: in CSS the 'class' attribute is denoted by:", 
+    answers: ["1. # tag ", "2. : ", "3. . ", "4. * "],
+    correctAnswer: "2"
+}
+];
