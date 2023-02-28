@@ -41,68 +41,72 @@ alignPtag.setAttribute("style", "align-text: left")
 //variables for timer
 let timer = document.querySelector("#time");
 let time = 120
-let penaltyIncurred = time - 10;
 
 // begin quiz by clicking start quiz button which hides start quiz button and shows the first question
 timer.textContent = time + " " + "seconds";
 
+localStorage.clear()
 startQuiz.addEventListener("click", function () {
-
+    
     let timeInterval = setInterval(timeCountdown, 1000);
     function timeCountdown() {
         time--
         timer.textContent = time + " " + "seconds";
-
+        
         localStorage.setItem("time", time)
-
+        
     };
-
+    
     hideStartQuizButton();
     showQuestions();
     Question(firstQuestion)
     renderButtons(firstQuestion)
-   
+    
     // buttonsList.innerHTML = ""
     // Question(secondQuestion)
     // renderButtons(secondQuestion)
-
-
-
+    
+    
+    
     //listen to clicks within the container = choices div    
     choices.addEventListener("click", function (event) {
         console.log(event)
         let element = event.target //ensures action occurs only when button pressed
         if (element.matches("button")) {
             let state = element.getAttribute("data-correctAnswer-Id")
-
+            
             for (let i = 0; i < questionsArray.length; i++) {
-
+                
                 if (state === questionsArray[i].correctAnswer) {
                     pTag.textContent = "Correct answer!"
                     clearInterval(timeInterval)
-
+                    
                 } else {
                     pTag.textContent = "Wrong answer!"
-
-
-
-                    localStorage.setItem("Penalty", penaltyIncurred) //stores the penaltyIncurred for wrong answer into local storage.
-
+                    
+                    
+                    
+                    
                     clearInterval(timeInterval);
-
-                let penaltyTimeInterval = setInterval(penaltyTime, 1000)
-
+                    
+                    setInterval(penaltyTime, 1000)
+                    
+                
                     function penaltyTime() {
+                        let penaltyIncurred = time - 10;
+
+                        localStorage.setItem("Penalty", penaltyIncurred) //stores the penaltyIncurred for wrong answer into local storage.
+                        
                         penaltyIncurred--
                         timer.textContent = penaltyIncurred + " " + " seconds"
                     }
-                  clearInterval(timeInterval)  
-                  
+                    
+                    
                 }
             }
         }
-        renderfinalScore()
         revealEndScreen();
+        renderfinalScore("Penalty")
     })
 
 
@@ -172,8 +176,9 @@ let fourthQuestion = questionsArray[3]
 }
 
 //show final score
-    function renderfinalScore() {
-
+function renderfinalScore() {
+    
+    
     let finalScore = JSON.parse(localStorage.getItem("Penalty"))
     finalScoreTag.textContent = finalScore
 
