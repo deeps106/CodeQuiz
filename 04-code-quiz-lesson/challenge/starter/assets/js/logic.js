@@ -7,6 +7,7 @@ console.log(questionsArray)//successful reading of questionsArray from questions
 let body = document.body
 let buttonsList = document.querySelector("#buttons");
 let choices = document.querySelector("#choices");
+let endScreen = document.querySelector("#end-screen")
 let endScreenScore = document.querySelector("#end-screen > p")
 let finalScoreTag = document.querySelector("#final-score");
 let highScoresPage = href = "highscores.html"
@@ -40,6 +41,7 @@ alignPtag.setAttribute("style", "align-text: left")
 //variables for timer
 let timer = document.querySelector("#time");
 let time = 120
+let penaltyIncurred = time - 10;
 
 // begin quiz by clicking start quiz button which hides start quiz button and shows the first question
 timer.textContent = time + " " + "seconds";
@@ -59,6 +61,7 @@ startQuiz.addEventListener("click", function () {
     showQuestions();
     Question(firstQuestion)
     renderButtons(firstQuestion)
+   
     // buttonsList.innerHTML = ""
     // Question(secondQuestion)
     // renderButtons(secondQuestion)
@@ -82,24 +85,25 @@ startQuiz.addEventListener("click", function () {
                     pTag.textContent = "Wrong answer!"
 
 
-                    let penaltyIncurred = time - 10;
 
                     localStorage.setItem("Penalty", penaltyIncurred) //stores the penaltyIncurred for wrong answer into local storage.
 
                     clearInterval(timeInterval);
 
-                  let timeDeducted =   setInterval(penaltyTime, 1000)
+                let penaltyTimeInterval = setInterval(penaltyTime, 1000)
 
                     function penaltyTime() {
                         penaltyIncurred--
                         timer.textContent = penaltyIncurred + " " + " seconds"
                     }
-                    clearInterval(timeDeducted)
+                  clearInterval(timeInterval)  
+                  
                 }
             }
         }
+        renderfinalScore()
+        revealEndScreen();
     })
-
 
 
 
@@ -173,6 +177,11 @@ let fourthQuestion = questionsArray[3]
     let finalScore = JSON.parse(localStorage.getItem("Penalty"))
     finalScoreTag.textContent = finalScore
 
-
 }
 renderfinalScore()
+
+//reveal end screen
+
+function revealEndScreen() {
+    endScreen.setAttribute("class", "start");
+}
